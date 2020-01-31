@@ -24,8 +24,29 @@ public class CadastroActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro);
+
         initViews();
 
+        aoClicarNoBotaoRegister();
+
+    }
+
+    public void initViews() {
+        inputNome = findViewById(R.id.cadastronome);
+        inputEmail = findViewById(R.id.cadastroemail);
+        inputSenha = findViewById(R.id.inputPassword);
+        inputRepeatSenha = findViewById(R.id.inputRepeatPassword);
+        btnRegister = findViewById(R.id.btnRegister);
+
+    }
+
+    private void vibrar(int i) {
+        Vibrator rr = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        long milliseconds = 30;
+        rr.vibrate(milliseconds);
+    }
+
+    private void aoClicarNoBotaoRegister() {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,20 +74,5 @@ public class CadastroActivity extends AppCompatActivity {
                 }
             }
         });
-    }
-
-    public void initViews() {
-        inputNome = findViewById(R.id.cadastronome);
-        inputEmail = findViewById(R.id.cadastroemail);
-        inputSenha = findViewById(R.id.inputPassword);
-        inputRepeatSenha = findViewById(R.id.inputRepeatPassword);
-        btnRegister = findViewById(R.id.btnRegister);
-
-    }
-
-    private void vibrar(int i) {
-        Vibrator rr = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-        long milliseconds = 30;
-        rr.vibrate(milliseconds);
     }
 }

@@ -38,6 +38,32 @@ public class CardapioRestauranteActivity extends AppCompatActivity implements Re
         setContentView(R.layout.activity_cardapio_restaurante);
         initViews();
 
+        setupToolbar();
+
+        validaAdapter();
+
+    }
+
+    public void initViews() {
+        imagemRestaurante = findViewById(R.id.imagemRestaurante);
+        nomeRestaurante = findViewById(R.id.nomeRestaurante);
+        recyclerPratos = findViewById(R.id.recyclerPratos);
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+
+    }
+
+    @Override
+    public void onClick(Pratos pratos) {
+        Intent intent = new Intent(this, DetalhePratoActivity.class);
+        intent.putExtra(PRATO_KEY, pratos);
+
+        startActivity(intent);
+    }
+
+    private void setupToolbar() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -52,6 +78,9 @@ public class CardapioRestauranteActivity extends AppCompatActivity implements Re
             }
         });
 
+    }
+
+    private void validaAdapter() {
         if (getIntent() != null) {
             Restaurantes restaurantes = getIntent().getExtras().getParcelable(RESTAURANTE_KEY);
 
@@ -73,24 +102,5 @@ public class CardapioRestauranteActivity extends AppCompatActivity implements Re
                 recyclerPratos.setLayoutManager(linearLayout);
             }
         }
-    }
-
-    public void initViews() {
-        imagemRestaurante = findViewById(R.id.imagemRestaurante);
-        nomeRestaurante = findViewById(R.id.nomeRestaurante);
-        recyclerPratos = findViewById(R.id.recyclerPratos);
-    }
-
-    @Override
-    public void onPointerCaptureChanged(boolean hasCapture) {
-
-    }
-
-    @Override
-    public void onClick(Pratos pratos) {
-        Intent intent = new Intent(this, DetalhePratoActivity.class);
-        intent.putExtra(PRATO_KEY, pratos);
-
-        startActivity(intent);
     }
 }

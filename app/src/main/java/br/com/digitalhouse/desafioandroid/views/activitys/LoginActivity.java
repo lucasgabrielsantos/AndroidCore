@@ -27,24 +27,10 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
         initViews();
+        irPraHome();
+        aoClicarnoButtonValidaCampo();
 
-        buttonregister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this, CadastroActivity.class);
-                startActivity(intent);
-            }
-        });
-
-
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                validacampo();
-            }
-        });
     }
 
     public void register() {
@@ -83,5 +69,24 @@ public class LoginActivity extends AppCompatActivity {
         Vibrator rr = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         long milliseconds = 30;
         rr.vibrate(milliseconds);
+    }
+
+    private void irPraHome() {
+        buttonregister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, CadastroActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    private void aoClicarnoButtonValidaCampo(){
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                validacampo();
+            }
+        });
     }
 }

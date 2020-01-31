@@ -29,14 +29,11 @@ public class HomeActivity extends AppCompatActivity implements RecyclerViewOnCli
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+
+        setupToolbar();
         initViews();
 
-        restauranteAdapter = new RestauranteAdapter(popularRestaurantes(), this);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        recyclerHome.setAdapter(restauranteAdapter);
-        recyclerHome.setLayoutManager(linearLayoutManager);
+        initAdapterManager();
 
     }
 
@@ -51,15 +48,11 @@ public class HomeActivity extends AppCompatActivity implements RecyclerViewOnCli
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
-        //Criação de uma variavel que vai receber o id do item selecionado
         int id = item.getItemId();
 
-        //Verifica se o id recebido é igual ao do layout e realiza uma ação
         if (id == R.id.action_settings) {
             Intent intent = new Intent(HomeActivity.this, CadastroActivity.class);
             startActivity(intent);
-
-            //Toast.makeText(this, "Settings", Toast.LENGTH_LONG).show();
 
             return true;
         }
@@ -108,5 +101,17 @@ public class HomeActivity extends AppCompatActivity implements RecyclerViewOnCli
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
 
+    }
+
+    private void setupToolbar() {
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+    }
+
+    private void initAdapterManager() {
+        restauranteAdapter = new RestauranteAdapter(popularRestaurantes(), this);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        recyclerHome.setAdapter(restauranteAdapter);
+        recyclerHome.setLayoutManager(linearLayoutManager);
     }
 }

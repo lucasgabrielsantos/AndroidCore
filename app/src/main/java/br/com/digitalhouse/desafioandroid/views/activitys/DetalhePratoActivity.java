@@ -24,29 +24,12 @@ public class DetalhePratoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalhe_prato);
 
-        Toolbar toolbar = findViewById(R.id.toolbardetalhe);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
-
-        toolbar.setNavigationOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
-        if (getIntent() != null) {
-            Pratos pratos = getIntent().getExtras().getParcelable(PRATO_KEY);
-            initViews();
-            titulodetalheprato.setText(pratos.getNomePrato());
-            descricaodetalheprato.setText(pratos.getDescPrato());
-
-        }
+        setupToolbar();
+        initViews();
+        setaDados();
     }
 
-    public void initViews(){
+    public void initViews() {
         imagemPratos = findViewById(R.id.imageDetalhePrato);
         titulodetalheprato = findViewById(R.id.titulodetalheprato);
         descricaodetalheprato = findViewById(R.id.descdetalheprato);
@@ -55,8 +38,30 @@ public class DetalhePratoActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-//        finish();
-////        Intent intent = new Intent(DetalhePratoActivity.this,CardapioRestauranteActivity.class);
-////        startActivity(intent);
+    }
+
+    private void setupToolbar() {
+        Toolbar toolbar = findViewById(R.id.toolbardetalhe);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+
+        });
+    }
+    private void setaDados(){
+
+        if (getIntent() != null) {
+            Pratos pratos = getIntent().getExtras().getParcelable(PRATO_KEY);
+            titulodetalheprato.setText(pratos.getNomePrato());
+            descricaodetalheprato.setText(pratos.getDescPrato());
+
+        }
     }
 }
